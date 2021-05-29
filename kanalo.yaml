@@ -1,0 +1,56 @@
+version: '0.0.1'
+hooks:
+    CONNECT:
+        tagClient:
+            rule: AppName == 'Website'
+            commands:
+              - command: tagSocket
+                params:
+                    tags: ${Claims('sub')}
+        tagServer:
+            rule: AppName == 'API Server'
+            commands:
+              - command: tagSocket
+                params:
+                    tags: 'server'
+apps:
+    client:
+        clientId: client
+        name: Website
+        type: web
+        tokenLocation: http_header
+        allowedOrigins:
+          -  http://localhost:3000
+        wsTimeout: 15000
+        authConfig:
+            type: jwt
+            settings:
+                claims:
+                    iss: https://user-events.us.auth0.com
+                    aud: https://user-events.beta.kanalo.dev
+                maxAge: 1d
+                verifier:
+                    algorithm: RS256
+                    type: jwk
+                    value:
+                        url: https://user-events.us.auth0.com/.well-known/jwks.json
+    server:
+        clientId: server
+        name: API Server
+        type: native
+        tokenLocation: http_header
+        wsTimeout: 15000
+        authConfig:
+            type: jwt
+            settings:
+                claims:
+                    iss: https://user-events.us.auth0.com
+                    aud: https://user-events.beta.kanalo.dev
+                maxAge: 1d
+                verifier:
+                    algorithm: RS256
+                    type: jwk
+                    value:
+                        url: https://user-events.us.auth0.com/.well-known/jwks.json
+envMode: dev
+

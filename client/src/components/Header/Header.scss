@@ -1,0 +1,26 @@
+$dark: rgb(48, 48, 48);
+
+.App-header {
+	background-color: #e4e4e4;
+	min-height: 15vh;
+	display: grid;
+	grid-template-columns: auto auto auto;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: $dark;
+}
+
+.Title {
+	grid-column: 1;
+}
+
+.AuthButton {
+	grid-column: 3;
+	color: $dark;
+}
+
+.Spacer {
+	grid-column: 2;
+	// width: ;
+}

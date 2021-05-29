@@ -1,0 +1,24 @@
+$container-width: 1050px;
+
+.App {
+  min-height: 100vh;
+  text-align: center;
+  margin: auto;
+  max-width: $container-width;
+  box-shadow: 0px 0px 10px 5px;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@import "~bootstrap/scss/bootstrap";
