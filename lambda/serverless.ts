@@ -29,6 +29,7 @@ const serverlessConfiguration: AWS = {
   },
   // import the function via paths
   functions: { handleEvent },
+  useDotenv: true,
 };
 
 module.exports = serverlessConfiguration;

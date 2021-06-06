@@ -12,7 +12,6 @@ function LoginButton(returnTo?: string) {
 							returnTo: returnTo || "/dashboard", //window.location.pathname,
 						},
 					});
-					const ws = new WebSocket();
 				}
 			}
 		>Log In</Button>

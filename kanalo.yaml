@@ -6,19 +6,19 @@ hooks:
             commands:
               - command: tagSocket
                 params:
-                    tags: ${Claims('sub')}
+                    tags: ["${Claims('sub')}"]
         tagServer:
             rule: AppName == 'API Server'
             commands:
               - command: tagSocket
                 params:
-                    tags: 'server'
+                    tags: ['server']
 apps:
     client:
         clientId: client
         name: Website
         type: web
-        tokenLocation: http_header
+        tokenLocation: query_string
         allowedOrigins:
           -  http://localhost:3000
         wsTimeout: 15000
@@ -26,8 +26,8 @@ apps:
             type: jwt
             settings:
                 claims:
-                    iss: https://user-events.us.auth0.com
-                    aud: https://user-events.beta.kanalo.dev
+                    iss: https://user-events.us.auth0.com/
+                    aud: https://user-events.kanalo.dev
                 maxAge: 1d
                 verifier:
                     algorithm: RS256
@@ -44,8 +44,8 @@ apps:
             type: jwt
             settings:
                 claims:
-                    iss: https://user-events.us.auth0.com
-                    aud: https://user-events.beta.kanalo.dev
+                    iss: https://user-events.us.auth0.com/
+                    aud: https://user-events.kanalo.dev
                 maxAge: 1d
                 verifier:
                     algorithm: RS256

@@ -18,5 +18,7 @@ export default {
   ],
   environment: {
 	  KANALO_API_ENDPOINT: '${env:KANALO_API_ENDPOINT}',
+	  KANALO_CLIENT_ID: '${env:KANALO_CLIENT_ID}',
+	  KANALO_CLIENT_SECRET: '${env:KANALO_CLIENT_SECRET}',
   },
 }
