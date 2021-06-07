@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 
 function WSWrapper({ children }) {
 	const [gws, updateWs] = useState();
-	const { isAuthenticated, isLoading, user, getAccessTokenSilently, logout } = useAuth0();
+	const { isAuthenticated, isLoading, user, getAccessTokenSilently } = useAuth0();
 
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const connectWS = useCallback(async () => {
@@ -15,9 +15,8 @@ function WSWrapper({ children }) {
 
 		ws.onmessage = ({ data }) => {
 			if (data === "logout") {
-				logout({
-					returnTo: window.location.origin, //TODO return to main page if on an authenticated page, otherwise the same page
-				});
+				// Force a reload and the component will realize it's logged out (since Auth0 knows)
+				window.location.reload();
 				return;
 			}
 		};
@@ -52,11 +51,11 @@ function WSWrapper({ children }) {
 			if (isLoading) return;
 
 			if (!isAuthenticated) {
-				return disconnectWS();
+				return disconnectWS(gws);
 			}
 
 			if (!gws) {
-				await connectWS();
+				return connectWS();
 			}
 		})();
 	}, [gws, isLoading, isAuthenticated, user, connectWS, disconnectWS]);
