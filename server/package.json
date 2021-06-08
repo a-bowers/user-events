@@ -1,0 +1,30 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "author": "andrew@kanalo.dev",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@types/auth0": "^2.33.3",
+    "@types/express": "^4.17.12",
+    "@types/node": "^15.12.1",
+    "@types/uuid": "^8.3.0",
+    "@types/ws": "^7.4.4",
+    "auth0": "^2.35.0",
+    "dotenv": "^10.0.0",
+    "env-var": "^7.0.1",
+    "express": "^4.17.1",
+    "express-oauth2-bearer": "^0.4.1",
+    "uuid": "^8.3.2",
+    "ws": "^7.4.6"
+  },
+  "devDependencies": {
+    "typescript": "^4.3.2"
+  },
+  "scripts": {
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "build": "tsc",
+    "start": "tsc && node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

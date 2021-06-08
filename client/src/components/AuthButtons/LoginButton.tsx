@@ -9,7 +9,7 @@ function LoginButton(returnTo?: string) {
 			onClick={async () => {
 					await loginWithRedirect({
 						appState: {
-							returnTo: returnTo || "/dashboard", //window.location.pathname,
+							returnTo: returnTo || window.location.pathname,
 						},
 					});
 				}

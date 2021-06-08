@@ -1,20 +1,14 @@
 import React from "react";
 import "./App.scss";
 import Header from "./components/Header";
+import CodeGetter from './components/CodeGetter';
 
 function App() {
 	return (
 		<div className="App">
 			<Header />
 			<main>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Learn React
-				</a>
+				<CodeGetter />
 			</main>
 		</div>
 	);
