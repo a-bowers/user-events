@@ -13,7 +13,6 @@ function CodeGetter() {
 			const token = await getAccessTokenSilently();
 			const res = await axios.get(process.env.REACT_APP_SERVER_URL || '', {
 				headers: {
-					// 'Access-Control-Allow-Origin': window.URL
 					Authorization: `Bearer ${token}`
 				},
 			});
