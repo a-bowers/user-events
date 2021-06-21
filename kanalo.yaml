@@ -14,43 +14,41 @@ hooks:
                 params:
                     tags: ['server']
 apps:
-    client:
-        clientId: client
-        name: Website
-        type: web
-        tokenLocation: query_string
-        allowedOrigins:
-          -  http://localhost:3000
-        wsTimeout: 15000
-        authConfig:
-            type: jwt
-            settings:
-                claims:
-                    iss: https://user-events.us.auth0.com/
-                    aud: https://user-events.kanalo.dev
-                maxAge: 1d
-                verifier:
-                    algorithm: RS256
-                    type: jwk
-                    value:
-                        url: https://user-events.us.auth0.com/.well-known/jwks.json
-    server:
-        clientId: server
-        name: API Server
-        type: native
-        tokenLocation: http_header
-        wsTimeout: 15000
-        authConfig:
-            type: jwt
-            settings:
-                claims:
-                    iss: https://user-events.us.auth0.com/
-                    aud: https://user-events.kanalo.dev
-                maxAge: 1d
-                verifier:
-                    algorithm: RS256
-                    type: jwk
-                    value:
-                        url: https://user-events.us.auth0.com/.well-known/jwks.json
+  - clientId: client
+    name: Website
+    type: web
+    tokenLocation: query_string
+    allowedOrigins:
+      -  http://localhost:3000
+    wsTimeout: 15000
+    authConfig:
+        type: jwt
+        settings:
+            claims:
+                iss: https://user-events.us.auth0.com/
+                aud: https://user-events.kanalo.dev
+            maxAge: 1d
+            verifier:
+                algorithm: RS256
+                type: jwk
+                value:
+                    url: https://user-events.us.auth0.com/.well-known/jwks.json
+  - clientId: server
+    name: API Server
+    type: native
+    tokenLocation: http_header
+    wsTimeout: 15000
+    authConfig:
+        type: jwt
+        settings:
+            claims:
+                iss: https://user-events.us.auth0.com/
+                aud: https://user-events.kanalo.dev
+            maxAge: 1d
+            verifier:
+                algorithm: RS256
+                type: jwk
+                value:
+                    url: https://user-events.us.auth0.com/.well-known/jwks.json
 envMode: dev
 
