@@ -1,10 +1,9 @@
-// import { useHistory } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState, useEffect, useCallback } from "react";
 
 function WSWrapper({ children }) {
 	const [gws, updateWs] = useState();
-	const { isAuthenticated, isLoading, user, getAccessTokenSilently } = useAuth0();
+	const { isAuthenticated, isLoading, user, getAccessTokenSilently, logout } = useAuth0();
 
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const connectWS = useCallback(async () => {
@@ -16,7 +15,9 @@ function WSWrapper({ children }) {
 		ws.onmessage = ({ data }) => {
 			if (data === "logout") {
 				// Force a reload and the component will realize it's logged out (since Auth0 knows)
-				window.location.reload();
+				// window.location.reload(); // FIXME this doesn't actually work if the user logs in again quickly while the message is travelling
+				// Instead we do a logout. This will spam the system with another message but ensures complience
+				logout();
 				return;
 			}
 		};

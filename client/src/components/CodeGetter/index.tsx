@@ -10,7 +10,9 @@ function CodeGetter() {
 
 	async function getCode() {
 		try {
-			const token = await getAccessTokenSilently();
+			const token = await getAccessTokenSilently(/*{
+				audience: process.env.REACT_APP_SERVER_API_AUDIENCE,
+			}*/);
 			const res = await axios.get(process.env.REACT_APP_SERVER_URL || '', {
 				headers: {
 					Authorization: `Bearer ${token}`
@@ -18,7 +20,8 @@ function CodeGetter() {
 			});
 		updateCode(res.data);
 		} catch (err) {
-			if (err.response.status === 403) {
+			console.log(err);
+			if (err.response?.status === 403) {
 				updateCode(err.response.data);
 			}
 		}
